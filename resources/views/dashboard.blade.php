@@ -1,17 +1,17 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout>
+@extends('layouts.main')
+@section('title', 'Dashboard')
+@section('content')
+<h2 class="h4 mb-4">Welcome, {{ auth()->user()->name }}</h2>
+<div class="row g-3">
+@foreach ($stats as $stat)
+<div class="col-6 col-md-3">
+<div class="card text-center shadow-sm">
+<div class="card-body">
+<div class="display-6">{{ $stat['value'] }}</div>
+<div class="text-muted">{{ $stat['label'] }}</div>
+</div>
+</div>
+</div>
+@endforeach
+</div>
+@endsection
